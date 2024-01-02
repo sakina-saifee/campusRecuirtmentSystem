@@ -1,0 +1,205 @@
+.image-banner{
+       position: relative;
+       background: url(../Assets/bannerCampusLogo.jpg);
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.login-container{
+    display:flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.login-form{
+   display:flex;
+   flex-direction: column;
+   padding: 10px;
+   border: 2px solid white;
+   border-radius: 10px;
+   width:350px;
+}
+
+.login-form {
+    font-size: 30px;
+
+}
+
+.login-form label{
+    padding: 0px;
+    margin-top: 1px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.login-form input {
+    padding: 5px;
+    border-radius: 5px;
+    margin:2px 0px;
+    border: 2px solid rgb(154,154,154);
+    font-size: 18px;
+    width: auto;
+}
+
+.login-form input:focus{
+    outline: 2px solid rgb(37, 132, 161); 
+    border: none;
+}
+
+.login-form button{
+    background-color:rgb(37, 132, 161);
+    margin: 20px 0px;
+    border: none;
+    color: white;
+    font-size:20px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.login-form button:hover{
+background-color: rgb(4, 48, 88);
+color: rgb(37, 132, 161);
+cursor:pointer;
+color: white;
+}
+
+.createNewaccdiv{
+    font-size: 20px;
+
+}
+.createNewaccdiv span{
+    margin: 6px;
+}
+
+.signupLabel{
+    text-decoration: none;
+    background-color:rgb(37, 132, 161); 
+    color: white;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    border-radius: 5px;
+}
+
+.signupLabel:hover{
+background-color: rgb(4, 48, 88);
+color: rgb(37, 132, 161);
+cursor:pointer;
+color: white;
+}
+
+.header{
+    color: rgb(37, 132, 161);
+    font-weight: 800;
+    font-size: 40px;
+}
+/* Student Register css
+} */
+
+
+.signup-container{
+    display:flex;
+    justify-content: center;
+  
+}
+
+.signup-form{
+   display:flex;
+   flex-direction: column;
+   padding: 10px;
+   border: 2px solid white;
+   border-radius: 10px;
+   width:350px;
+}
+
+.signup-form {
+    font-size: 30px;
+
+}
+
+.signup-form label{
+    padding: 0px;
+    margin-top: 16px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.signup-form input, .signup-form textarea {
+    padding: 5px;
+    border-radius: 5px;
+    margin:2px 0px;
+    border: 2px solid rgb(154,154,154);
+    font-size: 18px;
+    width: 100%;
+}
+
+.signup-form input:focus, .signup-form textarea:focus{
+    outline: 2px solid rgb(37, 132, 161);
+    border: none;
+}
+
+.signup-form button{
+    background-color: rgb(37, 132, 161);
+    margin: 20px 0px;
+    border: none;
+    color: white;
+    font-size:20px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.signup-form button:hover{
+background-color: rgb(4, 48, 88);
+color: rgb(37, 132, 161);
+cursor:pointer;
+}
+
+.alreadyhaveaccdiv{
+    font-size: 20px;
+
+}
+.alreadyhaveaccdiv span{
+    margin: 6px;
+}
+
+.loginLabel{
+    text-decoration: none;
+    background-color:rgb(37, 132, 161); 
+    color: white;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    border-radius: 5px;
+}
+
+.loginLabel:hover{
+background-color: rgb(4, 48, 88);
+color: rgb(37, 132, 161);
+cursor:pointer;
+}
+
+
+/* Student Login buttons*/
+.cvbuilder-btn , .jobportal-btn{
+     background-color: rgb(37, 132, 161) !important;
+ margin-left: 50px !important;
+}
+
+.buttons{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10%;
+   
+
+}

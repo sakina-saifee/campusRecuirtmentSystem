@@ -1,0 +1,18 @@
+
+.form-container{
+      width: 700px;
+    height: 100vh;
+    background-color: rgb(174, 214, 228);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+width: 10vw !important;
+} 
+
