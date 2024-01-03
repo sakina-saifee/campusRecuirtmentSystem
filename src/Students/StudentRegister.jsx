@@ -47,7 +47,7 @@ set(ref(db, 'studentSignedup/' + user.uid), {
 })
 .then(() => {
    toast.success("New User Added Successfully!");
-    stddata({
+   setStddata({
        email:"",
   password:"",
   mobile:"",
@@ -58,13 +58,14 @@ set(ref(db, 'studentSignedup/' + user.uid), {
 
      setTimeout(()=>{
           navigate('/studentlogin'); 
-     },4000);
+     },1000);
+}).catch((error)=>{
+  toast.error("Error", error);
 })
 
 
   }).catch((error)=>{
-  
-       toast.error("Please fill all required Fields");
+    toast.error("Error", error);
   })
 
 
@@ -89,7 +90,7 @@ set(ref(db, 'studentSignedup/' + user.uid), {
       <input type="text" placeholder='First and Last name here..' name="username" value={stddata.username} onChange={handleChange}/>
 
        <label>Mobile Phone Number</label>
-      <input type="text" placeholder='Mobile Number here..'  name="mobile" value={stddata.mobile} onChange={handleChange}/>
+      <input type="Number" placeholder='Mobile Number here..'  name="mobile" value={stddata.mobile} onChange={handleChange}/>
     
 
      <label>Email</label>

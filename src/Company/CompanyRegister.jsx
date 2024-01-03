@@ -57,12 +57,13 @@ set(ref(db, 'companyRegistered/' + user.uid), {
      setTimeout(()=>{
           navigate('/companylogin'); 
      },4000);
+}).catch((error)=>{
+  toast.error("Error", error);
 })
 
 
   }).catch((error)=>{
-  
-       toast.error("Please fill all required Fields");
+    toast.error("Error", error);
   })
 
 

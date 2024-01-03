@@ -12,7 +12,11 @@ import CompanyRegister from './Company/CompanyRegister';
 import CompanyMain from './Company/CompanyMain';
 import ViewStudentDetails from './Company/ViewStudentDetails';
 import PostAJob from './Company/PostAJob';
-
+import JobPortal from './Students/JobPortal';
+import AdminMain from './Admin/AdminMain';
+import AdminLogin from './Admin/AdminLogin';
+import StudentDetails from './Admin/StudentDetails';
+import CompanyDetails from './Admin/CompanyDetails';
 
 function App() {
   return (
@@ -27,12 +31,21 @@ function App() {
  <Route exact path="/studentregister" element={<StudentRegister/>}/> 
  <Route exact path="/stdmain" element={<StudentMain/>}/> 
  <Route exact path="/buildcv" element={<CVBuilder/>}/> 
+ <Route exact path="/jobportal" element={<JobPortal/>}/> 
 
  <Route exact path="/companyregister" element={<CompanyRegister/>}/> 
  <Route exact path="/companylogin" element={<CompanyLogin/>}/> 
  <Route exact path="/companymain" element={<CompanyMain/>}/> 
  <Route exact path="/viewstdDetails" element={<ViewStudentDetails/>}/> 
  <Route exact path="/postajob" element={<PostAJob/>}/> 
+
+
+
+
+ <Route exact path="/adminmain" element={<AdminMain/>}/> 
+ <Route exact path="/adminlogin" element={<AdminLogin/>}/> 
+ <Route exact path="/studentdetails" element={<StudentDetails/>}/> 
+ <Route exact path="/companydetails" element={<CompanyDetails/>}/> 
 
           {/* <Route exact path="/login" element={<Login/>}/>
  <Route exact path="/cart" element={<Cart/>}/>

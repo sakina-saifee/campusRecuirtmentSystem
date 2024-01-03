@@ -1,4 +1,4 @@
-import React, {useState, useEffect}from "react";
+import React, { useState, useEffect } from "react";
 import "../Home.css";
 import Navbar from "../Navbar";
 import Box from "@mui/material/Box";
@@ -15,13 +15,14 @@ import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
-import {auth, db} from '../firebaseConfig/Firebase';
-import { getDatabase, ref, set, push, onValue} from "firebase/database";
-import {  toast } from 'react-toastify';
+import { auth, db } from '../firebaseConfig/Firebase';
+import { getDatabase, ref, set, push, onValue } from "firebase/database";
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import { List } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -49,137 +50,136 @@ const PostAJob = () => {
   const ListItem = styled('li')(({ theme }) => ({
     margin: theme.spacing(0.5),
   }));
-  
-  
-    const [chipData, setChipData] = React.useState([
-      { key: 0, label: 'Angular' },
-      { key: 1, label: 'jQuery' },
-      { key: 2, label: 'Polymer'},
-      { key: 3, label: 'React' },
-      { key: 4, label: 'Vue.js' },
-      { key: 5, label: 'NextJs' },
-      { key: 6, label: 'Python' },
-    ]);
 
-    let defaultcolour = '#6b6bf1';
-    let whitetext='#ffffff';
 
-    const navigate=useNavigate();
+  const [chipData, setChipData] = React.useState([
+    { key: 0, label: 'Angular' },
+    { key: 1, label: 'jQuery' },
+    { key: 2, label: 'Polymer' },
+    { key: 3, label: 'React' },
+    { key: 4, label: 'Vue.js' },
+    { key: 5, label: 'NextJs' },
+    { key: 6, label: 'Python' },
+  ]);
+
+  let defaultcolour = '#6b6bf1';
+  let whitetext = '#ffffff';
+
+  const navigate = useNavigate();
   const [textColor, settextColor] = useState(whitetext);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [selectedSkillName, setSelectedSkillName] = useState([]);
   const [postedjob, setpostedjob] = useState([]);
   const [skilldb, setSkillDb] = useState([]);
 
-  const [vacancydata, setVacancydata]=useState({
-    jobtitle:"",
-     jobtype:"",
-        joblocation:"",
-    companyname:"",
-    jobdescription:"",
-    skills:[],
-    })
+  const [vacancydata, setVacancydata] = useState({
+    jobtitle: "",
+    jobtype: "",
+    joblocation: "",
+    companyname: "",
+    jobdescription: "",
+    skills: [],
+  })
 
 
-    const handleSelectedSkills = (data) =>()=> {
+  const handleSelectedSkills = (data) => () => {
 
-      //for selected skills bg colour change
-  if (selectedSkills.includes(data.key)) {
-    // Skill is already selected, remove it from the array
-    setSelectedSkills(selectedSkills.filter(selectedKey => selectedKey !== data.key));
-  } else {
-    // Skill is not selected, add it to the array
-    setSelectedSkills([...selectedSkills, data.key]);
-  }
-
-//for skill name
-  setSelectedSkillName(data.label);
-if (selectedSkillName.includes(data.label)) {
-// Skill is already selected, remove it from the array
-setSelectedSkillName(selectedSkillName.filter(selectedKey => selectedKey !== data.label));
-} else {
-// Skill is not selected, add it to the array
-setSelectedSkillName([...selectedSkillName, data.label]);
-}
-
-      };
-
-
-
-  const handlechange=(e)=>{
-    const {name, value}=e.target;
-    
-    setVacancydata((prevdata)=>(
-      {...prevdata,[name]:value}));
-    
+    //for selected skills bg colour change
+    if (selectedSkills.includes(data.key)) {
+      // Skill is already selected, remove it from the array
+      setSelectedSkills(selectedSkills.filter(selectedKey => selectedKey !== data.key));
+    } else {
+      // Skill is not selected, add it to the array
+      setSelectedSkills([...selectedSkills, data.key]);
     }
 
-  const SubmitJob=()=>{
-    const companyuser=auth.currentUser;
-   
+    //for skill name
+    setSelectedSkillName(data.label);
+    if (selectedSkillName.includes(data.label)) {
+      // Skill is already selected, remove it from the array
+      setSelectedSkillName(selectedSkillName.filter(selectedKey => selectedKey !== data.label));
+    } else {
+      // Skill is not selected, add it to the array
+      setSelectedSkillName([...selectedSkillName, data.label]);
+    }
+
+  };
+
+
+
+  const handlechange = (e) => {
+    const { name, value } = e.target;
+
+    setVacancydata((prevdata) => (
+      { ...prevdata, [name]: value }));
+
+  }
+  const companyuser = auth.currentUser;
+  console.log("compam", companyuser, auth);
+  const SubmitJob = () => {
+
     push(ref(db, 'CompanyVacanies/' + companyuser?.uid), {
- JobTitle: vacancydata.jobtitle,
- JobType: vacancydata.jobtype,
- JobLocation: vacancydata.joblocation,
- CompanyName: vacancydata.companyname,
- JobDescription: vacancydata.jobdescription,
- Skills: selectedSkillName,
+      JobTitle: vacancydata.jobtitle,
+      JobType: vacancydata.jobtype,
+      JobLocation: vacancydata.joblocation,
+      CompanyName: vacancydata.companyname,
+      JobDescription: vacancydata.jobdescription,
+      Skills: selectedSkillName,
+      uid: companyuser?.uid,
 
-})
-.then(() => {
-   toast.success("Posted job Successfully!");
- setVacancydata({
-  jobtitle:"",
-  jobtype:"",
-     joblocation:"",
- companyname:"",
- jobdescription:"",
- skills:[],
-  }
-      );
-    
-
-     setTimeout(()=>{
-          navigate('/companymain'); 
-     },4000);
-})
-
-  }
-
-  
-    const dbRef = ref(db, '/CompanyVacanies//');
-
-    useEffect(() => {
-        onValue(dbRef, (snapshot) => {
-          const newData = Object.values(snapshot?.val());
-          setpostedjob(newData);
-          console.log("snapshot", snapshot.val());
-        });
-      }, []);
-      
-      useEffect(() => {
-        if (postedjob.length > 0) {
-          console.log("postedjob n", postedjob);
-          const newData = Object.values(postedjob[0]);
-          setSkillDb(newData);
-          // newData.map((job, index) => {
-          //   console.log("Job:", job);
-          //   // Access the Skills array for each job
-          //   if (job.Skills) {
-          //     job.Skills.forEach((skill) => {
-          //       console.log("Skill:", skill);
-              
-          //      setSkillDb((prevdata)=>(
-          //     [...prevdata,skill]));
-          //         console.log("Skill db:", skilldb);
-
-          //     });
-              
-          //   } 
-          // });
-          console.log("skill db ", skilldb)
+    })
+      .then(() => {
+        toast.success("Posted job Successfully!");
+        setVacancydata({
+          jobtitle: "",
+          jobtype: "",
+          joblocation: "",
+          companyname: "",
+          jobdescription: "",
+          skills: [],
+          uid:"",
         }
-      }, [postedjob]);
+        );
+
+
+        setTimeout(() => {
+          navigate('/companymain');
+        }, 4000);
+      })
+
+  }
+
+
+
+  useEffect(() => {
+    auth.onAuthStateChanged((userlogged) => {
+      if (userlogged) {
+        console.log("helo", userlogged.uid)
+        const dbRef = ref(db, 'CompanyVacanies/' + userlogged?.uid);
+        onValue(dbRef, (snapshot) => {
+          const snapshotVal = snapshot?.val();
+          if (snapshotVal) { 
+       
+            const newData = Object.values(snapshotVal);
+
+            setSkillDb(newData);
+            console.log("snapshot", newData);
+          }
+       
+        });
+      }
+    })
+  }, []);
+
+  // useEffect(() => {
+  //   if (postedjob.length > 0) {
+  //     console.log("postedjob n", postedjob);
+  //     const newData = Object.values(postedjob[0]);
+  //     setSkillDb(newData);
+
+  //     console.log("skill db ", skilldb)
+  //   }
+  // }, [postedjob]);
 
 
   return (
@@ -191,7 +191,7 @@ setSelectedSkillName([...selectedSkillName, data.label]);
       </div>
       <Navbar />
 
-{/* modal popover */}
+      {/* modal popover */}
       <div>
         <Button onClick={handleOpen}>Post a Job</Button>
         <Modal
@@ -227,7 +227,7 @@ setSelectedSkillName([...selectedSkillName, data.label]);
                 value={vacancydata.jobtype}
                 onChange={handlechange}
               >
-         
+
                 <MenuItem value="full-time">Full Time</MenuItem>
                 <MenuItem value="part-time">Part-Time</MenuItem>
               </Select>
@@ -245,7 +245,7 @@ setSelectedSkillName([...selectedSkillName, data.label]);
             />
             <br />
             <br />
-<FormControl fullWidth>
+            <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Job Location</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -260,45 +260,45 @@ setSelectedSkillName([...selectedSkillName, data.label]);
             </FormControl>
             <br />
             <br />
-            <textarea   id="outlined-basic"
+            <textarea id="outlined-basic"
               label="Outlined"
               variant="outlined" placeholder="Job Description"
               value={vacancydata.jobdescription}
               name="jobdescription"
               onChange={handlechange}
-              ></textarea>
-            
+            ></textarea>
+
             <h2>Skill *</h2>
 
-    <Paper
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        p: 0.5,
-        m: 0,
-      }}
-      component="ul"
-    >
-      {chipData.map((data) => {
-       
-        return (
-          <ListItem key={data.key}>
-            <Chip
-          
-              label={data.label}
-             
-              onClick={handleSelectedSkills(data)}
-             style={{background: selectedSkills.includes(data.key)? '#191984' : '#0969a1', color:textColor}} 
-             
-            />
-          </ListItem>
-        );
-      })}
-    </Paper>
+            <Paper
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                listStyle: 'none',
+                p: 0.5,
+                m: 0,
+              }}
+              component="ul"
+            >
+              {chipData.map((data) => {
 
-   <Button onClick={SubmitJob}>Post</Button>
+                return (
+                  <ListItem key={data.key}>
+                    <Chip
+
+                      label={data.label}
+
+                      onClick={handleSelectedSkills(data)}
+                      style={{ background: selectedSkills.includes(data.key) ? '#191984' : '#0969a1', color: textColor }}
+
+                    />
+                  </ListItem>
+                );
+              })}
+            </Paper>
+
+            <Button onClick={SubmitJob}>Post</Button>
 
 
           </Box>
@@ -306,102 +306,96 @@ setSelectedSkillName([...selectedSkillName, data.label]);
       </div>
 
       {/* modal popover finsih */}
-
-    
-
-
-
-
-    <Card sx={{ minWidth: 275 }}>
-      
-    
-
+      <Card sx={{ minWidth: 275, marginTop: "60px"}}>
         <Paper
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        p: 0.5,
-        m: 0,
-      }}
-      component="ul"
-    >
+          // sx={{
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   flexWrap: 'wrap',
+          //   listStyle: 'none',
+          //   p: 0.5,
+          //   m: 0,
+          // }}
+          component="div"
+        >
+          {
+            skilldb.map((job, index) => {
+              console.log("Job:", job);
+              // Check if job.Skills is an array and render Chips
+              return (
+                <div style={{ display: 'flex' }} key={index} className="outer-div">
 
-{
-  skilldb.map((job, index) => {
-    console.log("Job:", job);
-    // Check if job.Skills is an array and render Chips
-    return (
-      <React.Fragment key={index}>
+                  <Typography color="text.secondary" gutterBottom sx={{
+                    textAlign: 'left',
 
-        <Typography color="text.secondary" gutterBottom  sx={{
-    textAlign: 'left',
+                    mt: '5px', // Use a string to specify pixel values directly
+                    fontSize: 14
+                  }}>
+                    {job.JobTitle}
+                  </Typography>
 
-    mt: '5px', // Use a string to specify pixel values directly
-    fontSize: 14
-  }}>
-          {job.JobTitle}
-        </Typography>
+                  <List className="listskills">
+                    {Array.isArray(job.Skills) && job.Skills.map((skill, skillIndex) => (
 
-        {Array.isArray(job.Skills) && job.Skills.map((skill, skillIndex) => (
-          <ListItem key={skillIndex}>
-            <Chip
-              label={skill}
-              style={{ background: '#2584a1', color:"white" }}
-            />
-          </ListItem>
-        ))}
-
-
-<Typography  color="text.secondary" gutterBottom sx={{
-    textAlign: 'right',
-  
-    mt: '4px', 
-    fontSize: 14
-  }}>
-          {job.JobType}
-
-          <Typography sx={{
-    textAlign: 'right',
-    
-    m: '14px', 
-    fontSize: 14,
-    display:"inline"
-  }} color="text.secondary" gutterBottom>
-          {job.JobLocation}
-        </Typography>
-
-        </Typography>
-
-        <Typography sx={{
-    textAlign: 'right',
-    
-    m: '14px', 
-    fontSize: 14,
-    display:"inline"
-  }} color="text.secondary" gutterBottom>
-          {job.JobDescription}
-        </Typography>
-
-        <Typography sx={{
-    textAlign: 'right',
-    
-    m: '10px', 
-    mt:'1px',
-    fontSize: 14,
-    display:"inline"
-  }} color="text.secondary" gutterBottom>
-          {job.CompanyName}
-        </Typography>
-      </React.Fragment>
+                      <ListItem key={skillIndex}>
+                        <Chip
+                          label={skill}
+                          style={{ background: '#2584a1', color: "white" }}
+                        />
+                      </ListItem>
+                    ))}
+                  </List>
 
 
-    );
-  })
-}
-    </Paper>
-    </Card>
+
+                  <Typography color="text.secondary" gutterBottom sx={{
+                    textAlign: 'right',
+
+                    mt: '4px',
+                    fontSize: 14
+                  }}>
+                    {job.JobType}
+
+                    <Typography sx={{
+                      textAlign: 'right',
+
+                      m: '14px',
+                      fontSize: 14,
+                      display: "inline"
+                    }} color="text.secondary" gutterBottom>
+                      {job.JobLocation}
+                    </Typography>
+
+                  </Typography>
+
+                  <Typography sx={{
+                    textAlign: 'right',
+
+                    m: '14px',
+                    fontSize: 14,
+                    display: "inline"
+                  }} color="text.secondary" gutterBottom>
+                    {job.JobDescription}
+                  </Typography>
+
+                  <Typography sx={{
+                    textAlign: 'right',
+
+                    m: '10px',
+                    mt: '1px',
+                    fontSize: 14,
+                    display: "inline"
+                  }} color="text.secondary" gutterBottom>
+                    {job.CompanyName}
+                  </Typography>
+                </div >
+
+
+              );
+            })
+          }
+        </Paper>
+      </Card>
 
     </>
   );

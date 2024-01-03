@@ -12,6 +12,11 @@ const navigate=useNavigate();
 navigate('/buildcv')
    }
 
+   const handleJobPortal=()=>{
+      
+navigate('/jobportal')
+   }
+
   return (
     <>
  <div className='image-banner'>
@@ -23,7 +28,7 @@ navigate('/buildcv')
 <Navbar/>
  <div className='buttons'>
     <Button variant="contained" className='cvbuilder-btn' onClick={handleCVBuilder}>Cv Builder</Button>
-    <Button variant="contained" className='jobportal-btn'>Job Portal</Button>
+    <Button variant="contained" className='jobportal-btn' onClick={handleJobPortal}>Job Portal</Button>
  </div>
     </>
     

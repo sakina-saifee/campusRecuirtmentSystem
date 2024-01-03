@@ -57,7 +57,7 @@ props.setStdata((prevdata)=>(
             variant="outlined"
             placeholder="423 03234 043543685"
             type="text"
-            value={props.stddata.cnic}
+            value={props.stddata?.cnic}
              name="cnic" 
              onChange={handlechange}
           />

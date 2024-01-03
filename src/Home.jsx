@@ -17,6 +17,10 @@ const navigate=useNavigate();
     navigate('./companylogin');
   }
 
+  const handleadmin=(e)=>{
+    navigate('./adminlogin');
+  }
+  
   return (
     <>
       <div className='image-banner'>
@@ -29,7 +33,7 @@ const navigate=useNavigate();
 
  <Button variant="contained" className='stud-btn' onClick={handlestudent}>Student</Button>
  <Button variant="contained"  className='company-btn' onClick={handlecompany}>Company</Button>
- <Button variant="contained"  className='admin-btn'>Admin</Button>
+ <Button variant="contained"  className='admin-btn' onClick={handleadmin}> Admin</Button>
  
    </div>
     </>
