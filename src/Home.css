@@ -16,6 +16,7 @@
     position: absolute;
     right: 200px;
     color: aliceblue;
+    margin-right: -100px;
 }
 .home-page-buttons{
     display: flex;
