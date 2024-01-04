@@ -11,7 +11,6 @@ const StudentDetails = () => {
 
 
     const [stddata, setstdata]=useState([]);
-  ;
 
 const dbRef = ref(db, '/studentApplied/');
 
