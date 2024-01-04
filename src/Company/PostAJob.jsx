@@ -193,7 +193,7 @@ const PostAJob = () => {
 
       {/* modal popover */}
       <div>
-        <Button onClick={handleOpen}>Post a Job</Button>
+        <Button onClick={handleOpen} className="post-a-job-btn"> Post a Job</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -298,7 +298,7 @@ const PostAJob = () => {
               })}
             </Paper>
 
-            <Button onClick={SubmitJob}>Post</Button>
+            <Button onClick={SubmitJob} className="modal-post-a-job-btn">Post</Button>
 
 
           </Box>

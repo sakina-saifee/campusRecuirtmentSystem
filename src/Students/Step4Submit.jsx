@@ -27,6 +27,7 @@ set(ref(db, 'studentApplied/' + user?.uid), {
  qualification:props.stddata.qualification,
  cgpa:props.stddata.cgpa,
  profilePicture: "",
+ uid:user?.uid,
 })
 .then(() => {
    toast.success("Registered for job Successfully!");

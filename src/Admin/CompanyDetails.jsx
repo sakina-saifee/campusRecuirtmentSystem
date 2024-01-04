@@ -44,9 +44,9 @@ const CompanyDetails = () => {
 
 
 
-        const dbRef = ref(db, 'CompanyVacanies//');
+        const dbRef = ref(db, 'CompanyVacanies/');
         onValue(dbRef, (snapshot) => {
-            console.log("snapshot vlaues", snapshot);
+            // console.log("snapshot vlaues", snapshot);
             const snapshotVal = snapshot?.val();
             if (snapshotVal) {
                 const newData = Object.values(snapshotVal);
@@ -64,6 +64,7 @@ const CompanyDetails = () => {
             //   setSkillDb(newData);
             // Transform each job to the desired structure
             let arr = [];
+            console.log("postedjob", postedjob);
             postedjob.map(job => {
                 let key = Object.keys(job);
                 console.log("key", key)
@@ -86,46 +87,7 @@ const CompanyDetails = () => {
         remove(ref(db, 'CompanyVacanies/'+`${job.uid}/`+`${job.key}`));
     }
 
-    // const handleDeleteClick = (companyId, jobKey) => {
-    //     deleteJobVacancy(companyId, jobKey);
-    // };
-
-    // Somewhere in your code, when rendering the list of jobs, you would have a delete button
-    // For each job, you would pass the company ID and job key to the handleDeleteClick function
-    // Example (inside your component render):
-
-    // useEffect(() => {
-    //     const dbRef = ref(db, 'CompanyVacancies/');
-    //     onValue(dbRef, (snapshot) => {
-    //       console.log("snapshot values", snapshot);
-    //       const snapshotVal = snapshot?.val();
-    //       if (snapshotVal) {
-    //         const newData = Object.entries(snapshotVal).map(([companyId, companyJobs]) => {
-    //           return Object.entries(companyJobs).map(([jobKey, jobDetails]) => {
-    //             return { companyId, jobKey, ...jobDetails };
-    //           });
-    //         }).flat();
-    //         setpostedjob(newData);
-    //         console.log("snapshot", newData);
-    //       }
-    //     });
-    //   }, []);
-
-
-
-
-    //   // Function to delete a job vacancy within a company
-    //   const deleteJobVacancy = (companyId, jobKey) => {
-    //     const jobRef = ref(db, `CompanyVacancies/${companyId}/${jobKey}`);
-    //     remove(jobRef)
-    //       .then(() => {
-    //         console.log('Job vacancy removed successfully');
-    //       })
-    //       .catch((error) => {
-    //         console.error('Error removing job vacancy: ', error);
-    //       });
-    //   };
-
+   
 
 
     return (

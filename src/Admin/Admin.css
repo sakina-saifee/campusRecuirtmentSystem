@@ -1,40 +1,50 @@
-.css-kp3opr-MuiTypography-root{
+/* .css-kp3opr-MuiTypography-root{
     position: absolute !important;
-    right: 40px !important;
+    right: 192px !important;
     margin-top: 18px !important;
 
-}
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+} */
+/* .css-1e6y48t-MuiButtonBase-root-MuiButton-root{
     position: absolute !important;
     right: 40px !important;
-}
+} */
 
-.css-bwhgkh-MuiTypography-root{
-width: 18% !important;
-margin-left: 50px !important;
-}
-
-
-.css-gavykb-MuiChip-root{
-margin-top: 18px !important;
-}
-
-.outer-div{
-    background-color: #9cbddd;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin: 14px;
-}
-
-.listskills{
-    display: flex;
-}
-
-.deletebtn{
-    background-color: #2584a1 !important;
-    color: white !important;
-    margin-top:20px !important;
-}
-
+/* .css-bwhgkh-MuiTypography-root{
+    width: 11% !important;
+    margin-left: 50px !important;
+    }
+    
+    
+    .css-gavykb-MuiChip-root{
+    margin-top: 18px !important;
+    }
+     */
+    .outer-div{
+        background-color: #9cbddd;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin: 14px;
+        height:100px;
+    }
+    
+    .listskills{
+        display: flex;
+    }
+    
+    .deletebtn{
+        background-color: #2584a1 !important;
+        color: white !important;
+        /* margin-top:20px !important; */
+        margin-bottom: 10px;
+        position: absolute !important;
+        right: 192px !important;
+        margin-top: 18px !important;
+    }
+    
+    .del-btn{
+        background-color: #082630 !important;
+        color: white !important;
+    }
+   

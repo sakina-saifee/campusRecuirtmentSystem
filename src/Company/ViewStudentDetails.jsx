@@ -4,6 +4,7 @@ import Navbar from "../Navbar";
 import '../Home.css';
 import {auth, db } from '../firebaseConfig/Firebase';
 import { getDatabase, ref, set, onValue} from "firebase/database";
+
 const ViewStudentDetails = () => {
 
     const [stddata, setstdata]=useState([]);
